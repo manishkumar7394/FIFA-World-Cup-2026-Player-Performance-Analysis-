@@ -6,6 +6,106 @@ This project is a comprehensive SQL analysis of FIFA World Cup player performanc
 
 The project contains **35+ business-oriented SQL queries** ranging from beginner to advanced level. Each query is designed to answer meaningful business questions related to player performance, team statistics, defensive analysis, goalkeeping, discipline, and tournament insights.
 
+```SQL
+CREATE TABLE fifa_player(
+
+    player_id VARCHAR(20),
+    player_name VARCHAR(100),
+    age INT,
+    nationality VARCHAR(100),
+    team VARCHAR(100),
+    jersey_number INT,
+    position VARCHAR(20),
+    height_cm INT,
+    weight_kg INT,
+    preferred_foot VARCHAR(10),
+    club_name VARCHAR(100),
+    market_value_eur BIGINT,
+
+    match_id VARCHAR(30),
+    match_date DATE,
+    stadium VARCHAR(100),
+    city VARCHAR(100),
+    opponent_team VARCHAR(100),
+    tournament_stage VARCHAR(50),
+
+    match_result VARCHAR(10),
+    goals_team INT,
+    goals_opponent INT,
+
+    minutes_played INT,
+    goals INT,
+    assists INT,
+    shots INT,
+    shots_on_target INT,
+
+    expected_goals_xg NUMERIC(5,2),
+    expected_assists_xa NUMERIC(5,2),
+
+    key_passes INT,
+    successful_passes INT,
+    total_passes INT,
+    pass_accuracy NUMERIC(5,2),
+
+    dribbles_attempted INT,
+    successful_dribbles INT,
+
+    crosses INT,
+    successful_crosses INT,
+
+    tackles INT,
+    interceptions INT,
+    clearances INT,
+    blocks INT,
+
+    aerial_duels_won INT,
+    aerial_duels_lost INT,
+
+    recoveries INT,
+    defensive_actions INT,
+
+    fouls_committed INT,
+    fouls_suffered INT,
+
+    yellow_cards INT,
+    red_cards INT,
+    offsides INT,
+
+    saves INT,
+    save_percentage NUMERIC(5,2),
+    punches INT,
+    clean_sheet BOOLEAN,
+    goals_conceded INT,
+    penalty_saves INT,
+
+    distance_covered_km NUMERIC(5,2),
+    sprint_distance_km NUMERIC(5,2),
+    top_speed_kmh NUMERIC(5,2),
+
+    accelerations INT,
+    decelerations INT,
+
+    stamina_score NUMERIC(5,2),
+    player_rating NUMERIC(4,2),
+    performance_score NUMERIC(6,2),
+
+    offensive_contribution NUMERIC(6,2),
+    defensive_contribution NUMERIC(6,2),
+    possession_impact NUMERIC(6,2),
+    pressure_resistance NUMERIC(6,2),
+    creativity_score NUMERIC(6,2),
+    consistency_score NUMERIC(6,2),
+    clutch_performance_score NUMERIC(6,2),
+
+    total_goals_tournament INT,
+    total_assists_tournament INT,
+    total_minutes_tournament INT,
+
+    player_of_match_awards INT,
+    tournament_rating NUMERIC(4,2)
+);
+```
+
 ---
 
 ## 🎯 Project Objectives
