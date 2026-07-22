@@ -147,3 +147,76 @@ SELECT
     ) AS rating_change
 
 FROM fifa_player;
+
+
+-- Q46
+-- Calculate each player's percentage contribution to team goals.
+
+WITH player_goals AS (
+    SELECT
+        player_name,
+        team,
+        SUM(goals) AS player_goals
+    FROM fifa_player
+    GROUP BY player_name, team
+),
+
+team_goals AS (
+    SELECT
+        team,
+        SUM(goals) AS team_goals
+    FROM fifa_player
+    GROUP BY team
+)
+
+SELECT
+    p.player_name,
+    p.team,
+    p.player_goals,
+    t.team_goals,
+
+    ROUND(
+        (p.player_goals * 100.0) / t.team_goals,
+        2
+    ) AS contribution_percentage
+
+FROM player_goals p
+JOIN team_goals t
+ON p.team = t.team
+
+ORDER BY
+    team,
+    contribution_percentage DESC;
+
+
+-- Q47
+-- Find players whose tournament rating is above their team's average.
+WITH player_avg_rating as (
+SELECT 
+	player_name, 
+	team,
+	round(
+ 	AVG(tournament_rating)
+	::numeric,2) as player_avg_rating
+
+FROM fifa_player
+GROUP BY  player_name, team
+),
+
+team_avg_rating as(
+SELECT
+	team,
+	round(
+	avg(tournament_rating)
+	::numeric,2) as team_avg_rating
+
+FROM  fifa_player
+GROUP BY team
+)
+SELECT p.player_name, p.team, p.player_avg_rating, t.team_avg_rating
+FROM  player_avg_rating p
+JOIN team_avg_rating t ON t.team = p.team
+
+WHERE p.player_avg_rating > t.team_avg_rating 
+ORDER BY  team, p.player_avg_rating DESC
+	
